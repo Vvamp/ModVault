@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ModVault.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ModVault"
+    Shell.FlyoutBehavior="Locked"
+    xmlns:helpers="clr-namespace:ModVault.Helpers" >
+
+
+    <FlyoutItem Title="Active Mod List" Icon="house_solid.png">
+        <ShellContent
+            Title="Active Mod List"
+            BindingContext=""
+            Icon="house_solid.png"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="All Mod Lists" Icon="list_ul_solid.png">
+        <ShellContent
+            Title="All Mod Lists"
+            Icon="list_ul_solid.png"
+            ContentTemplate="{DataTemplate local:ModLists}"
+            Route="ModLists" />
+    </FlyoutItem>
+
+
+    <MenuItem Text="Settings"
+              IconImageSource="gear_solid.png"
+              Command="{Binding HelpCommand}"
+              CommandParameter="https://learn.microsoft.com/dotnet/maui/fundamentals/shell" />
+
+    <MenuItem Text="About"
+              IconImageSource="circle_info_solid.png"
+              Command="{Binding HelpCommand}"
+              CommandParameter="https://learn.microsoft.com/dotnet/maui/fundamentals/shell" />
+    <ShellContent 
+        ContentTemplate="{DataTemplate local:CreateModListModal}"
+                  Route="CreateModListModal" />
+
+</Shell>

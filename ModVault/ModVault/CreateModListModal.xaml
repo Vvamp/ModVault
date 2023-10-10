@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ModVault.CreateModListModal"
+             xmlns:viewmodel="clr-namespace:ModVault.ViewModels" x:DataType="viewmodel:CreateModListModalViewModel"
+             Title="Create Modlist" xmlns:helpers="clr-namespace:ModVault.Helpers" xmlns:core="clr-namespace:ModVault.Core;assembly=ModVault.Core" Shell.PresentationMode="Modal">
+
+    <Grid RowDefinitions="*,*,*" ColumnDefinitions=".25*, .75*" Padding="10" RowSpacing="10" ColumnSpacing="10">
+        
+            <Label Text="Modlist Name"/>
+            <Entry Grid.Column="1" Placeholder="Enter a name..." />
+
+            <Label Grid.Row="1" Text="Game Version"/>
+            <Entry Grid.Row="1" Grid.Column="1" Placeholder="Enter a name..." /> 
+        
+            <Label Grid.Row="2" Text="Modloader"/>
+            <Picker Grid.Row="2" Grid.Column="1" x:Name="modloaderpicker" Title="Select a modloader"  ItemsSource="{Binding Modloaders}" />
+
+
+
+
+    </Grid>
+</ContentPage>

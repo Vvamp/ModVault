@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ModVault.MainPage" Title="{Binding SelectedModList.name}" xmlns:viewmodel="clr-namespace:ModVault.ViewModels" x:DataType="viewmodel:MainViewModel"
+             xmlns:helpers="clr-namespace:ModVault.Helpers" xmlns:core="clr-namespace:ModVault.Core;assembly=ModVault.Core" Shell.NavBarIsVisible="False">
+
+    <!-- Table/grid -->
+        <Grid RowDefinitions="Auto, 40, *, Auto" ColumnDefinitions=".75*, .25*" Padding="10" RowSpacing="10" ColumnSpacing="10">
+            <HorizontalStackLayout Padding="20" BackgroundColor="#1c1c1c" Grid.ColumnSpan="2 ">
+                <Button Text="Update Mods" Command="{Binding UpdateModsCommand}"/>
+                <Button Text="Stage Mods Folder" Command="{Binding StageModFolderCommand}"/>
+            </HorizontalStackLayout>
+            <Label Grid.Row="1"  FontSize="Title" Text="{Binding SelectedModList.name}"/>
+
+
+            <CollectionView Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Items}" VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type core:MatchedMod}">
+                        <Frame Margin="0,1">
+                            <Grid Margin="0,1" ColumnDefinitions=".30*, .15*, .10*, *, .10*, Auto">
+                                <Label VerticalTextAlignment="Center" Text="{Binding Name}" FontSize="Micro"/>
+                                <Label VerticalTextAlignment="Center" Grid.Column="1" Text="{Binding ModVersion}"/>
+                                <Label VerticalTextAlignment="Center" Grid.Column="2" Text="{Binding GameVersion}"/>
+                                <Label VerticalTextAlignment="Center" Grid.Column="3" Text="{Binding Author}"/>
+                                <Label VerticalTextAlignment="Center" Grid.Column="4" Text="{Binding Source}"/>
+                                <Button Grid.Column="5" Margin="0" BackgroundColor="#2B2B2B" TextColor="Red" Padding="0" Text="{x:Static helpers:LineIconFont.TrashCan}" FontFamily="LineIcons" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}" CommandParameter="{Binding Name}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry Placeholder="Enter Mod ID" Grid.Row="3" Text="{Binding Text}"/>
+            <Button Text="Add" Grid.Row="3" Grid.Column="1" Command="{Binding AddCommand}"/>
+        </Grid>
+</ContentPage>
